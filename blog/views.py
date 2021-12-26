@@ -1,7 +1,39 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Post
+
+from django.views.generic import ListView, DetailView
 
 from blog.forms import CommentForm
-from blog.models import Post, Comment
+from blog.models import Post, Comment, Carinfo
+
+
+class UploadView(ListView):
+    model = Post
+    template_name = 'about.html'
+
+def index(request):
+    if request.method == 'POST':
+        year = request.POST['year']
+        make = request.POST['make']
+        model = request.POST['model']
+        price = request.POST['price']
+        info = request.POST['info']
+        print(year,make,model,price,info)
+        obj = Carinfo()
+        obj.year = year
+        obj.make = make
+        obj.model = model
+        obj.price = price
+        obj.info = info 
+        obj.save()
+    context = {
+
+
+    }
+    return render(request,'about.html',context)
+
+
 
 
 def blog_index(request):

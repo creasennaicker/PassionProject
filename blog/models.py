@@ -2,6 +2,14 @@ from django.db import models
  
 class Category(models.Model):
     name = models.CharField(max_length=20)
+
+class Carinfo(models.Model):
+    year = models.CharField(max_length=10,default='',null=False)
+    make = models.CharField(max_length=20,default='',null=False)
+    model = models.CharField(max_length=20,default='',null=False)
+    price = models.CharField(max_length=20,default='',null=False)
+    info = models.CharField(max_length=400,default='',null=False)
+
  
 class Post(models.Model):
     title = models.CharField(max_length=255)
